@@ -81,7 +81,7 @@ for arch in arches:
 print(status)
 
 with open("archstatus.html", "w") as results:
-    conv = Ansi2HTMLConverter()
-    ansi = str(status)
+    conv = Ansi2HTMLConverter(dark_bg=True, scheme='xterm', font_size="15.5px")
+    ansi = status.get_string()
     html = conv.convert(ansi)
     results.write(html)
