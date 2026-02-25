@@ -1,12 +1,8 @@
 #!/usr/bin/env python3
 import io
-from multiprocessing.sharedctypes import Value
-from pprint import PrettyPrinter
 import urllib3
-#import sys
 
 from ansi2html import Ansi2HTMLConverter
-from asyncio import InvalidStateError
 from datetime import datetime
 from prettytable import PrettyTable
 from termcolor import colored
@@ -18,7 +14,7 @@ def colourise_age(age):
         return colored(age, 'yellow')
     elif age.days > 14:
         return colored(age, 'red')
-    
+
     return age
 
 arches=[
@@ -56,7 +52,7 @@ for arch in arches:
 
     for line in io.TextIOWrapper(req):
         if not line or line.startswith("#"):
-            continue   
+            continue
 
         line = line.strip()
         line = line.split(" ")
@@ -70,7 +66,6 @@ for arch in arches:
             date = datetime.strptime(date, '%Y%m%dT%H%M%SZ')
         except ValueError:
             print(f"Could not parse %{date=} %{arch=} %{stage3=}")
-            #sys.exit(1)
             continue
 
         age = datetime.now() - date
