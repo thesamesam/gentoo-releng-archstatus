@@ -43,7 +43,7 @@ status.field_names = ["Arch", "stage3", "Age"]
 
 for arch in arches:
     path = mirror.format(arch)
-    req = http.request("GET", "{0}/latest-stage3.txt".format(path), preload_content=False)
+    req = http.request("GET", f"{path}/latest-stage3.txt", preload_content=False)
     req.auto_close = False
 
     if not req.status == 200:
